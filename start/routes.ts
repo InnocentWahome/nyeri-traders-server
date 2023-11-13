@@ -57,16 +57,6 @@ Route.group(() => {
     Route.delete('/:id', 'CategoriesController.delete')
   }).prefix('/categories')
 
-  // deliveries routes
-  Route.group(() => {
-    Route.get('/', 'DeliveriesController.index')
-    Route.post('/', 'DeliveriesController.store')
-    Route.get('/:id', 'DeliveriesController.show')
-    Route.get('deliveries/:id', 'DeliveriesController.sellerDeliveries')
-    Route.put('/:id', 'DeliveriesController.update')
-    Route.delete('/:id', 'DeliveriesController.delete')
-  }).prefix('/deliveries')
-
   //user updating routes
   Route.group(() => {
     Route.put('/:id', 'UserController.update')

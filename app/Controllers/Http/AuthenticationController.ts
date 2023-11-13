@@ -98,10 +98,20 @@ export default class AuthenticationController {
 
       const payload = await request.validate({ schema: loginSchema })
       const token = await auth.use('api').attempt(payload.email, payload.password)
+
+      const user = await User.findBy('email', payload.email)
+
+      if (!user) {
+        throw new Error('User not found')
+      }
+
       response.status(200).json({
         success: true,
         message: 'Successfully authenticated',
-        data: token,
+        data: {
+          token,
+          user: user.toJSON(), // Convert user object to JSON
+        },
       })
     } catch (error) {
       response.status(500).json({

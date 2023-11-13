@@ -46,7 +46,7 @@ export default class ProductController {
 
   public async sellerProducts({ params, response }: HttpContextContract) {
     try {
-      const product = await Product.query().where('seller_id', params.id).preload('seller').first()
+      const product = await Product.query().where('seller_id', params.id).preload('seller')
       if (product) {
         return response.json({
           success: true,
